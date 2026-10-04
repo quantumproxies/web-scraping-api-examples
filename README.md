@@ -56,4 +56,31 @@ For a whole site you do not have a URL list for, use
 - [Is web scraping legal in the US?](https://quanticdata.io/blog/is-web-scraping-legal-in-us/)
 - [Ready-made Collectors](https://quanticdata.io/collectors/) — when a semantic input beats a URL
 
+## Node.js
+
+The minimal page-to-Markdown call without Python: Node 18 or newer, no dependencies. See [`markdown.mjs`](markdown.mjs):
+
+```bash
+export QUANTICDATA_API_KEY=qd_live_your_key_here
+node markdown.mjs https://www.iana.org/help/example-domains > page.md
+```
+
+## Sample response
+
+A real `POST /v1/scrape` call from 4 October 2026 on `https://www.iana.org/help/example-domains` with `format: "markdown"`. The content is shortened here; the complete payload is in [`sample-response.json`](sample-response.json).
+
+```json
+{
+  "url": "https://www.iana.org/help/example-domains",
+  "finalUrl": "https://www.iana.org/help/example-domains",
+  "status": 200,
+  "contentType": "text/html; charset=utf-8",
+  "format": "markdown",
+  "title": "Example Domains",
+  "content": "# Example Domains\n\nA number of domains such as `example.com` and `example.org` are maintained for documentation purposes. These domains may be used as illustrative examples in documents without prior coordination with us. They are not available for registration or transfer.\n\nWe provide a web service on the example domain hosts to provide basic i…",
+  "engine": "tls",
+  "bytes": 6661
+}
+```
+
 MIT licensed.
